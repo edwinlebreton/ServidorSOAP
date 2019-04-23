@@ -5,7 +5,7 @@
  */
 package org.me.modelo;
 
-import org.me.conexion.JdbcDerbyConnection;
+import org.me.conexion.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -68,7 +68,7 @@ public class Video {
     }
     
     private boolean randomExists(int n){
-        Connection connection = JdbcDerbyConnection.ConexionDB();
+        Connection connection = DBConnection.ConexionDB();
         
         String sql = "select * from videos where id = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -85,7 +85,7 @@ public class Video {
     }
     
     public boolean alreadyExists(){
-        Connection connection = JdbcDerbyConnection.ConexionDB();
+        Connection connection = DBConnection.ConexionDB();
         
         String sql = "select * from videos where titulo = ?";
  
@@ -105,7 +105,7 @@ public class Video {
     }
     
     public boolean addVideo(){
-        Connection connection = JdbcDerbyConnection.ConexionDB();
+        Connection connection = DBConnection.ConexionDB();
         
         String sql = "INSERT INTO VIDEOS VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {

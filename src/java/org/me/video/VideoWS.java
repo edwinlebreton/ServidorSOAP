@@ -17,7 +17,7 @@ import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.ejb.Stateless;
-import org.me.conexion.JdbcDerbyConnection;
+import org.me.conexion.DBConnection;
 import org.me.modelo.Video;
 
 /**
@@ -33,7 +33,7 @@ public class VideoWS {
      */
     @WebMethod(operationName = "findByTitle")
     public List<Video> findByTitle(@WebParam(name = "title") String title) {
-        Connection connection = JdbcDerbyConnection.ConexionDB();
+        Connection connection = DBConnection.ConexionDB();
         List<Video> list= new ArrayList<Video>();
         String sql = "select * from videos where titulo = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -65,7 +65,7 @@ public class VideoWS {
      */
     @WebMethod(operationName = "findByAuthor")
     public List<Video> findByAuthor(@WebParam(name = "author") String author) {
-        Connection connection = JdbcDerbyConnection.ConexionDB();
+        Connection connection = DBConnection.ConexionDB();
         List<Video> list= new ArrayList<Video>();
         String sql = "select * from videos where autor = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -97,7 +97,7 @@ public class VideoWS {
      */
     @WebMethod(operationName = "findByDate")
     public List<Video> findByDate(@WebParam(name = "date") String date) {
-        Connection connection = JdbcDerbyConnection.ConexionDB();
+        Connection connection = DBConnection.ConexionDB();
         List<Video> list= new ArrayList<Video>();
         String sql = "select * from videos where fecha_creacion = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
